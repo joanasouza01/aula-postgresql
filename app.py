@@ -28,3 +28,16 @@ elif menu == "listar":
     else:
         st.info("nenhhum aluno encontrado!")
 
+elif menu == "atualizar":
+    st.subheader("atualizar idade")
+    alunos = listar_alunos()
+    if alunos:
+        id_aluno = st.selectbox("escolha o id do aluno para atualizar", [linha[0]for linha in alunos])
+        nova_idade = st.number_input("nova idade", min_value=16, step=1)
+        if st.button("atualizar"):
+            atualiza_idade(id_aluno, nova_idade)
+            st.success(f"idade do aluno atualizada com sucesso.")
+    else: 
+        st.info("nenhum aluno disponivel para atualizar")
+
+
