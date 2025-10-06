@@ -31,6 +31,7 @@ elif menu == "listar":
 elif menu == "atualizar":
     st.subheader("atualizar idade")
     alunos = listar_alunos()
+    st.dataframe(alunos)
     if alunos:
         id_aluno = st.selectbox("escolha o id do aluno para atualizar", [linha[0]for linha in alunos])
         nova_idade = st.number_input("nova idade", min_value=16, step=1)
@@ -40,4 +41,14 @@ elif menu == "atualizar":
     else: 
         st.info("nenhum aluno disponivel para atualizar")
 
-
+elif menu == "deletar":
+    st.subheader("deletar aluno")
+    alunos = listar_alunos()
+    st.dataframe(alunos)
+    if alunos:
+        id_aluno = st.selectbox("escolha o id do aluno que deseja deletar", [linha[0] for linha in alunos])
+        if st.button("deletar"):
+            deletar_aluno(id_aluno)
+            st.success("aluno deletado com sucesso😃!")
+    else:
+        st.info("nenhum aluno disponivel para deletar")
